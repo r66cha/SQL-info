@@ -99,6 +99,30 @@ RIGHT JOIN orders o ON u.id = o.user_id;
 SELECT u.id, u.name, o.amount
 FROM users u
 FULL OUTER JOIN orders o ON u.id = o.user_id;
+
+--
+
+SELECT
+    customer_id,
+    COUNT(order_id) AS total_orders,   -- количество заказов
+    SUM(amount) AS total_amount,       -- общая сумма
+    AVG(amount) AS avg_amount          -- средняя сумма заказа
+FROM orders
+WHERE order_date BETWEEN '2025-01-01' AND '2025-12-31'  -- фильтр по дате
+GROUP BY customer_id                   -- группировка по клиенту
+HAVING SUM(amount) > 1000              -- только клиенты с суммой > 1000
+ORDER BY total_amount DESC;            -- сортировка по сумме по (DESC) убыванию (ASC) возрастанию
+LIMIT 10;                              -- Лимит
+
+---
+
+SELECT customer_id, SUM(amount) AS total_amount
+FROM orders
+WHERE order_date >= '2025-01-01'       -- сначала фильтр строк
+GROUP BY customer_id                   -- затем группировка
+HAVING SUM(amount) > 1000              -- фильтр по агрегатам
+ORDER BY total_amount DESC;            -- сортировка результата
+LIMIT 10;                              -- Лимит
 ```
 
 ---

@@ -19,6 +19,9 @@ ALTER TABLE users ADD email VARCHAR(100);
 -- Изменение таблицы (удаление колонки)
 ALTER TABLE users DROP COLUMN age;
 
+-- Переименование колонки
+ALTER TABLE users RENAME COLUMN age TO user_age;
+
 -- Переименование таблицы
 ALTER TABLE users RENAME TO customers;
 

@@ -24,13 +24,24 @@ ALTER TABLE users RENAME COLUMN age TO user_age;
 
 -- Переименование таблицы
 ALTER TABLE users RENAME TO customers;
+```
 
--- Создание индекса
+### Индексы
+
+```sql
+-- Простой индекс (ускоряет поиск по колонке)
 CREATE INDEX idx_name ON users(name);
 
--- Удаление индекса
+
+-- Индекс сразу по нескольким колонкам
+CREATE INDEX idx_name_age ON users
+
+-- Удалить индекс
 DROP INDEX idx_name;
+(name, age);
 ```
+
+---
 
 ## 2. DML (Data Manipulation Language) — Манипуляция данными
 
@@ -44,6 +55,8 @@ UPDATE users SET age = 30 WHERE id = 1;
 -- Удаление данных
 DELETE FROM users WHERE id = 1;
 ```
+
+---
 
 ## 3. DQL (Data Query Language) — Запросы к данным
 
@@ -90,6 +103,8 @@ FROM users u
 FULL OUTER JOIN orders o ON u.id = o.user_id;
 ```
 
+---
+
 ## 4. DCL (Data Control Language) — Управление доступом
 
 ```sql
@@ -105,6 +120,8 @@ GRANT SELECT, INSERT ON users TO 'ruslan';
 -- Отзыв прав
 REVOKE INSERT ON users FROM 'ruslan';
 ```
+
+---
 
 ## 5. TCL (Transaction Control Language) — Управление транзакциями
 
@@ -129,20 +146,9 @@ SET AUTOCOMMIT = ON;
 SET AUTOCOMMIT = OFF;
 ```
 
-## Индексы
+---
 
-```sql
--- Простой индекс (ускоряет поиск по колонке)
-CREATE INDEX idx_name ON users(name);
-
-
--- Индекс сразу по нескольким колонкам
-CREATE INDEX idx_name_age ON users
-
--- Удалить индекс
-DROP INDEX idx_name;
-(name, age);
-```
+---
 
 # Типы данных в SQL
 
@@ -156,6 +162,8 @@ DROP INDEX idx_name;
 | DECIMAL(p,s) / NUMERIC(p,s)     | Точное число с фиксированной точкой | p — общая длина, s — количество знаков после запятой |
 | FLOAT / REAL / DOUBLE PRECISION | Числа с плавающей запятой           | Могут быть неточными                                 |
 
+---
+
 ## 2. Строковые типы
 
 | Тип        | Описание                   | Примечание                  |
@@ -163,6 +171,8 @@ DROP INDEX idx_name;
 | CHAR(n)    | Строка фиксированной длины | n — количество символов     |
 | VARCHAR(n) | Строка переменной длины    | до n символов               |
 | TEXT       | Длинный текст              | Ограничение зависит от СУБД |
+
+---
 
 ## 3. Дата и время
 
@@ -173,11 +183,15 @@ DROP INDEX idx_name;
 | TIMESTAMP | Дата и время       | Год, месяц, день, часы, минуты, секунды |
 | INTERVAL  | Промежуток времени | PostgreSQL                              |
 
+---
+
 ## 4. Логический тип
 
 | Тип     | Описание     |
 | ------- | ------------ |
 | BOOLEAN | TRUE / FALSE |
+
+---
 
 ## 5. Специальные типы
 

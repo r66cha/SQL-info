@@ -32,13 +32,11 @@ ALTER TABLE users RENAME TO customers;
 -- Простой индекс (ускоряет поиск по колонке)
 CREATE INDEX idx_name ON users(name);
 
-
 -- Индекс сразу по нескольким колонкам
-CREATE INDEX idx_name_age ON users
+CREATE INDEX idx_name_age ON users (name, age)
 
 -- Удалить индекс
 DROP INDEX idx_name;
-(name, age);
 ```
 
 ---
